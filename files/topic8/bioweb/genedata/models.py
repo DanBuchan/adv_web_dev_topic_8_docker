@@ -1,5 +1,13 @@
 from django.db import models
+from django.contrib.auth.models import User
 
+class AppUser(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    organisation = models.CharField(max_length=256, null=True, blank=True)
+
+    def __unicode__(self):
+        return self.user.username
 
 class EC(models.Model):
     ec_name = models.CharField(max_length=256, null=False, blank=False)
